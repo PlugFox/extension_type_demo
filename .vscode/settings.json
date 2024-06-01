@@ -23,8 +23,9 @@
         "editor.links": true,
         "editor.rulers": [
             120
-        ]
+        ],
     },
+    "dart.openDevTools": "never",
     "dart.lineLength": 120,
     "dart.doNotFormat": [
         "**.g.dart",
