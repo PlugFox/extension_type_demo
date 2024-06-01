@@ -5,28 +5,33 @@ import 'dart:js_interop' as js;
 import 'package:web/web.dart' as web;
 
 void main() {
+  // https://dart.dev/interop/js-interop
+
   const dataKey = 'data';
   final localStorage = web.window.localStorage;
 
   final input = Input.getById('dataInput');
 
-  final saveButton = Button.getById('saveButton').addCallback(() {
-    final value = savedValue = input.value;
-    switch (value) {
-      case String text when text.isNotEmpty:
-        localStorage.setItem(dataKey, savedValue = input.value);
-      default:
-        localStorage.removeItem(dataKey);
-    }
-  });
+  final saveButton = Button.getById('saveButton')
+    ..addCallback(() {
+      final value = savedValue = input.value;
+      switch (value) {
+        case String text when text.isNotEmpty:
+          localStorage.setItem(dataKey, value);
+        default:
+          localStorage.removeItem(dataKey);
+      }
+    });
 
-  final loadButton = Button.getById('loadButton').addCallback(() {
-    savedValue = input.value = localStorage.getItem('data') ?? '';
-  });
+  final loadButton = Button.getById('loadButton')
+    ..addCallback(() {
+      savedValue = input.value = localStorage.getItem(dataKey) ?? '';
+    });
 
-  final clearButton = Button.getById('clearButton').addCallback(() {
-    clearInput();
-  });
+  final clearButton = Button.getById('clearButton')
+    ..addCallback(() {
+      clearInput();
+    });
 }
 
 @js.JS()
@@ -52,7 +57,6 @@ extension type Input._(web.Element _input) implements web.EventTarget, js.JSObje
 extension type Button._(web.Element _button) implements web.Element {
   factory Button.getById(String id) {
     final element = web.document.getElementById(id);
-    element?.onClick;
     if (element == null) throw UnsupportedError('ButtonElement with id $id not found');
     return Button._(element);
   }
