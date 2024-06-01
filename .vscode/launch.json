@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "[VM] Debug",
+            "type": "dart",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "bin/main.dart",
+            "args": [
+                "--no-release"
+            ],
+            "env": {}
+        },
+        {
+            "name": "[JS] Debug",
+            "type": "dart",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "web/main.dart",
+            "args": [
+                "--no-release"
+            ],
+            "env": {}
+        }
+    ]
+}
